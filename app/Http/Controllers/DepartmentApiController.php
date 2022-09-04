@@ -51,7 +51,10 @@ class DepartmentApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //update by ID
+        $epartment = Department::find($id);
+        $epartment->update($request->all());
+        return $epartment;
     }
 
     /**
