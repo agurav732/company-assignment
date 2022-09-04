@@ -66,5 +66,6 @@ class DepartmentApiController extends Controller
     public function destroy($id)
     {
         //
+        return  Department::destroy($id);
     }
 }
