@@ -16,7 +16,18 @@ class DepartmentApiController extends Controller
     public function index()
     {
         //show all
-        return Department::all();
+        // return Department::all();
+          $data = Department::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+
+                           $btn = '<a class="btn-floating modal-trigger edit" href="#modal2" data-edit="'.$row["id"].'"><i class="mdi-editor-mode-edit" ></i></a>&nbsp;&nbsp;<button class="btn-floating del" data-del="'.$row["id"].'"><i class="mdi-action-delete"></i></button>';
+     
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
     }
 
     /**
@@ -33,7 +44,18 @@ class DepartmentApiController extends Controller
          'description'=>'required'
         ]);
        
-        return Department::create($request->all());
+       
+           if(Department::create($request->all())){
+            $code = 1;
+            $msg = "Saved successfully !";
+        }
+        else{
+               $code = 0;
+            $msg = "something went wrong !";
+        }
+         $result = array("code"=>$code,"msg"=> $msg);
+            return json_encode($result);
+        
     }
 
     /**
@@ -58,9 +80,17 @@ class DepartmentApiController extends Controller
     public function update(Request $request, $id)
     {
         //update by ID
-        $epartment = Department::find($id);
-        $epartment->update($request->all());
-        return $epartment;
+        $department = Department::find($id);
+       if($department->update($request->all())){
+            $code = 1;
+            $msg = "Updated successfully !";
+        }
+        else{
+               $code = 0;
+            $msg = "something went wrong !";
+        }
+         $result = array("code"=>$code,"msg"=> $msg);
+            return json_encode($result);
     }
 
     /**

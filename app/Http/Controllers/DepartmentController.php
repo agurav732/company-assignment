@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
+use App\User;
 use DataTables;
 
 class DepartmentController extends Controller
@@ -11,24 +12,16 @@ class DepartmentController extends Controller
     //
       function index()
     {
-    
-     return view('department');
+      $token =  $_COOKIE['token'] ?? '0';
+          $user = User::where('s_token',$token)->first();
+          if(!$user){
+            return redirect('/')->with('error', 'Please Login First');;
+          }
+     return view('department',compact('token'));
     }
     function get_departments(Request $request)
     {
-        // if ($request->ajax()) {
-            $data = Department::latest()->get();
-            return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-   
-                           $btn = '<button class="btn-floating"><i class="mdi-editor-mode-edit"></i></button>&nbsp;&nbsp;<button class="btn-floating"><i class="mdi-action-delete"></i></button>';
-     
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        // }
+       return Department::all();
       
         
     }

@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'MainController@index');
-Route::post('checklogin', 'MainController@checklogin');
+
 Route::get('dashboard', 'MainController@dashboard')->name("dashboard");
 Route::get('department', 'DepartmentController@index')->name("department");
+Route::get('employee', 'EmployeeController@index')->name("employee");
 Route::get('logout', 'MainController@logout');

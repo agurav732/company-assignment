@@ -14,13 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' =>['auth:sanctum']], function () {
+Route::resource('departments',DepartmentApiController::class);
+Route::resource('employee',EmployeeApiController::class);
+});
+
+Route::post('checklogin', 'MainController@checklogin')->name('checklogin');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::get('get_departments', 'DepartmentController@get_departments');
-Route::resource('departments',DepartmentApiController::class);
-Route::resource('employee',EmployeeApiController::class);
+
 Route::post('add_department', 'DepartmentController@add_department');
 // Route::get('delete_departments', 'DepartmentController@get_departments');
 // Route::get('delete_departments', 'DepartmentController@get_departments');

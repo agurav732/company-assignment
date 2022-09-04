@@ -49,17 +49,19 @@
 
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
-      <form class="login-form" method="POST" action="{{ url('checklogin') }}">
+      <form class="login-form" method="POST" action="{{ url('api/checklogin') }}">
          {{ csrf_field() }}
         <div class="row">
           <div class="input-field col s12 center">
             <!-- <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login"> -->
             <p class="center login-form-text">Login</p>
+          
           </div>
         </div>
 
    @if ($message = Session::get('error'))
    <div class="alert alert-danger alert-block">
+   
     <button type="button" class="close" data-dismiss="alert">×</button>
     <strong>{{ $message }}</strong>
    </div>
@@ -85,6 +87,7 @@
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
             <input id="password" type="password" name="password">
+               <div id="errors-list"></div>
             <label for="password">Password</label>
           </div>
         </div>
@@ -125,6 +128,38 @@
     <script type="text/javascript" src="{{asset('js/plugins.min.js')}}"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="{{asset('js/custom-script.js')}}"></script>
+
+    <script>
+    $(function() {
+    // handle submit event of form
+      $(document).on("submit", ".login-form", function() {
+        var e = this;
+        // change login button text before ajax
+        $(this).find("[type='submit']").html("LOGIN...");
+
+        $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+          $(e).find("[type='submit']").html("LOGIN");
+          if (data.token) { // If success then redirect to login url
+            document.cookie = 'token ='+data.token;
+            window.location = data.redirect_location;
+          }
+        }).fail(function(response) {
+            // handle error and show in html
+          $(e).find("[type='submit']").html("LOGIN");
+          $(".alert").remove();
+          var erroJson = JSON.parse(response.responseText);
+          console.log(erroJson);
+          $("#errors-list").html(`<div class="card-content red-text text-center">
+                       <i class="mdi-alert-error"></i> ${erroJson.message}
+                      </div>`);
+       
+
+        });
+        return false;
+      });
+    });
+  </script>
 
 </body>
 
