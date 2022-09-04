@@ -48,6 +48,7 @@ class EmployeeApiController extends Controller
     public function show($id)
     {
         //
+          return Employee::find($id) ?? "Not found";
     }
 
     /**
@@ -60,6 +61,9 @@ class EmployeeApiController extends Controller
     public function update(Request $request, $id)
     {
         //
+            $employee = Employee::find($id);
+        $employee->update($request->all());
+        return $employee;
     }
 
     /**
@@ -71,5 +75,6 @@ class EmployeeApiController extends Controller
     public function destroy($id)
     {
         //
+             return  Employee::destroy($id);
     }
 }
