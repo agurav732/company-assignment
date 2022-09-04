@@ -24,6 +24,6 @@ password : password
 laravel
 
 ## Tables 
--  [users]
--  [employees]
--  [departments]
+-  users
+-  employees
+-  departments
