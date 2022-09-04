@@ -36,9 +36,9 @@ class MainController extends Controller
 
     }
 
-    function successlogin()
+    function dashboard()
     {
-     return view('successlogin');
+     return view('dashboard');
     }
 
     function logout()

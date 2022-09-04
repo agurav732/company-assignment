@@ -44,7 +44,7 @@
 
 
   @if(isset(Auth::user()->email))
-    <script>window.location="successlogin";</script>
+    <script>window.location="dashboard";</script>
    @endif
 
   <div id="login-page" class="row">

@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('get_departments', 'DepartmentController@get_departments');
+Route::resource('departments',DepartmentApiController::class);
+Route::post('add_department', 'DepartmentController@add_department');
+// Route::get('delete_departments', 'DepartmentController@get_departments');
+// Route::get('delete_departments', 'DepartmentController@get_departments');
