@@ -27,3 +27,7 @@ laravel
 -  users
 -  employees
 -  departments
+
+## Database File
+
+https://github.com/agurav732/company-assignment/blob/master/database.sql
