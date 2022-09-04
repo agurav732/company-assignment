@@ -15,7 +15,7 @@ class DepartmentApiController extends Controller
      */
     public function index()
     {
-        //
+        //show all
         return Department::all();
     }
 
@@ -38,7 +38,8 @@ class DepartmentApiController extends Controller
      */
     public function show($id)
     {
-        //
+        //get Department by ID
+          return Department::find($id) ?? "Not found";
     }
 
     /**
