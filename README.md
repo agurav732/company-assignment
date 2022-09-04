@@ -20,9 +20,10 @@
 admin : admin@admin.com
 password : password
 
-##Database Name 
+## Database Name 
 laravel
-- [Tables] 
-i)[users]
-ii)[employees]
-iii)[departments]
+
+## Tables 
+-  [users]
+-  [employees]
+-  [departments]
