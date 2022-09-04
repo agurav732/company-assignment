@@ -28,6 +28,12 @@ class DepartmentApiController extends Controller
     public function store(Request $request)
     {
         //
+          $this->validate($request,[
+         'name'=> 'required|unique:departments,name',
+         'description'=>'required'
+        ]);
+       
+        return Department::create($request->all());
     }
 
     /**
