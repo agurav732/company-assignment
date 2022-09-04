@@ -12,7 +12,7 @@
 
 
 - [Laravel Version 7.3]
-- [Laravel Sactum Tokens for Rest API] Laravel Sanctum provides a featherweight authentication system for SPAs (single page applications), mobile applications, and simple, token based APIs.
+- [Laravel Sanctum Tokens for Rest API] Laravel Sanctum provides a featherweight authentication system for SPAs (single page applications), mobile applications, and simple, token based APIs.
 - [Jquery, Javascript, Ajax] Ajax is a set of web development techniques that uses various web technologies on the client-side to create asynchronous web applications.
 - [Materialize Admin Theme] Admin is a great template for your app's dashboards, analytics and data visualizations. It comes with custom styles for many plugins like Chart.js, jqvmap etc.
 
